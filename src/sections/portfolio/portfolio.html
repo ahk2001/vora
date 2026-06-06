@@ -1,0 +1,49 @@
+<section id="portfolio" class="portfolio-section section-padding">
+    <div class="container">
+        
+        <div class="portfolio-header text-center reveal">
+            <span class="section-subtitle">Transformações Realistas</span>
+            <h2 class="section-title">A precisão em cada detalhe</h2>
+            <p class="section-desc">
+                Arraste a barra central para comparar a diferença sutil e o impacto real do design VÖRA.
+            </p>
+        </div>
+
+        <!-- Componente do Slider Antes/Depois -->
+        <div class="comparison-slider-container reveal">
+            <div class="comparison-slider" style="--value: 50%;">
+                
+                <!-- Imagem do ANTES (Fundo) -->
+                <div class="slider-img before-img">
+                    <img src="before_lash.png?v=2" alt="Cílios Antes" class="slider-image">
+                    <span class="label label-before">Antes</span>
+                </div>
+
+                <!-- Imagem do DEPOIS (Sobreposta com clip-path) -->
+                <div class="slider-img after-img">
+                    <img src="after_lash.png?v=2" alt="Cílios Depois" class="slider-image">
+                    <span class="label label-after">Depois</span>
+                </div>
+
+                <!-- Barra e Botão de Arraste (Handle) -->
+                <div class="slider-handle">
+                    <div class="handle-line"></div>
+                    <div class="handle-button">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="arrow-left">
+                            <polyline points="15 18 9 12 15 6"></polyline>
+                        </svg>
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="arrow-right">
+                            <polyline points="9 18 15 12 9 6"></polyline>
+                        </svg>
+                    </div>
+                    <div class="handle-line"></div>
+                </div>
+
+                <!-- Input invisível para acessibilidade e controle simplificado em mobile/desktop -->
+                <input type="range" min="0" max="100" value="50" class="slider-input" aria-label="Arraste para comparar antes e depois">
+
+            </div>
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,309 @@
+/* care.css */
+
+.care-section {
+    background-image: url('bg-sessao-cuidados.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    border-top: 1px solid rgba(187, 163, 135, 0.1);
+    position: relative;
+    /* overflow: hidden; REMOVIDO para permitir que o position: sticky funcione na coluna esquerda */
+}
+
+/* Layout de Duas Colunas */
+.care-layout-wrapper {
+    display: grid;
+    grid-template-columns: 1.1fr 1.3fr;
+    gap: 5rem;
+    align-items: start;
+}
+
+/* Coluna Sticky da Esquerda (Sem caixa branca, com letras claras e sombra escura difusa) */
+.care-left-col {
+    position: sticky;
+    top: 120px; /* Alinhado perfeitamente abaixo do header flutuante */
+    padding: 1.5rem 0; /* Removido padding interno da caixa */
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.65), 0 2px 8px rgba(0, 0, 0, 0.45);
+}
+
+.care-left-col.reveal.active {
+    transform: none !important;
+}
+
+.care-left-col .section-subtitle {
+    color: var(--color-primary-light);
+}
+
+.care-left-col .section-title {
+    margin: 1.2rem 0;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--color-white); /* Letra clara para alto contraste */
+}
+
+.care-left-col .section-desc {
+    font-size: 0.98rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85); /* Letra clara */
+    margin-bottom: 2rem;
+}
+
+/* Badge Estético Moderno */
+.care-aesthetic-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: var(--radius-full);
+    background-color: rgba(187, 163, 135, 0.08);
+    border: 1px solid rgba(187, 163, 135, 0.15);
+}
+
+.badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-primary);
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+.badge-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.4);
+        opacity: 1;
+    }
+}
+
+/* Coluna Direita (Stack de Cartões) */
+.care-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Card Editorial */
+.care-card {
+    background-color: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(187, 163, 135, 0.12);
+    border-radius: var(--radius-xl);
+    padding: 2.2rem;
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.care-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background-color: var(--color-primary);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.care-card:hover {
+    transform: translateX(8px);
+    box-shadow: var(--shadow-medium);
+    border-color: rgba(187, 163, 135, 0.3);
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.care-card:hover::before {
+    transform: scaleY(1);
+}
+
+/* Número Serifado no Card */
+.care-card-number {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--color-primary);
+    opacity: 0.4;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    flex-shrink: 0;
+    min-width: 50px;
+}
+
+.care-card:hover .care-card-number {
+    opacity: 0.95;
+    transform: scale(1.1) translateY(-2px);
+}
+
+/* Conteúdo de Texto do Card */
+.care-card-content {
+    flex-grow: 1;
+}
+
+.care-card-title {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.6rem;
+    transition: color 0.3s ease;
+}
+
+.care-card:hover .care-card-title {
+    color: var(--color-text);
+}
+
+.care-card-desc {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(31, 31, 31, 0.65);
+    transition: color 0.3s ease;
+}
+
+.care-card:hover .care-card-desc {
+    color: rgba(31, 31, 31, 0.85);
+}
+
+/* Responsividade */
+@media (max-width: 991px) {
+    .care-layout-wrapper {
+        grid-template-columns: 1fr 1.2fr;
+        gap: 3rem;
+    }
+    
+    .care-left-col {
+        top: 100px;
+        padding: 1.5rem 0;
+    }
+
+    .care-left-col .section-title {
+        font-size: 2rem;
+    }
+
+    .care-left-col .section-desc {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .care-layout-wrapper {
+        grid-template-columns: 1fr 1.15fr;
+        gap: 2rem;
+    }
+    
+    .care-left-col {
+        top: 90px;
+        padding: 1.5rem 0;
+    }
+
+    .care-left-col .section-title {
+        font-size: 1.6rem;
+    }
+
+    .care-left-col .section-desc {
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .care-card {
+        padding: 1.6rem;
+        gap: 1.2rem;
+    }
+
+    .care-card-number {
+        font-size: 2.4rem;
+        min-width: 40px;
+    }
+    
+    .care-card-title {
+        font-size: 1.1rem;
+    }
+    
+    .care-card-desc {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .care-layout-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .care-left-col {
+        position: sticky;
+        top: 70px; /* Logo abaixo do header mobile flutuante */
+        z-index: 10;
+        background-color: rgba(245, 239, 235, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        padding: 1.2rem 1rem;
+        margin: 0 -1.5rem; /* Expande até a borda da tela */
+        border-radius: 0;
+        border: none;
+        border-bottom: 1px solid rgba(187, 163, 135, 0.15);
+        box-shadow: 0 8px 30px rgba(31, 31, 31, 0.06);
+        text-align: center;
+        text-shadow: none; /* Remove a sombra no mobile já que temos fundo bege */
+    }
+    
+    .care-left-col .section-subtitle {
+        font-size: 0.75rem;
+        letter-spacing: 2px;
+        color: var(--color-primary); /* Cor bege original para fundo claro */
+    }
+
+    .care-left-col .section-title {
+        font-size: 1.4rem;
+        margin: 0.4rem 0 0 0;
+        color: var(--color-text); /* Cor escura original para fundo claro */
+    }
+
+    .care-left-col .section-desc {
+        display: none; /* Esconde a descrição no mobile portrait para economizar espaço */
+    }
+
+    .care-aesthetic-badge {
+        display: none;
+    }
+    
+    .care-right-col {
+        gap: 1.2rem;
+        padding-top: 1rem;
+    }
+    
+    .care-card {
+        flex-direction: row;
+        padding: 1.4rem;
+        gap: 1.2rem;
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+    
+    .care-card-number {
+        font-size: 2rem;
+        min-width: 30px;
+    }
+}

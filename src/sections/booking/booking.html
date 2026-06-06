@@ -1,0 +1,199 @@
+<section id="agendamento" class="booking-section section-padding">
+    <div class="container">
+        
+        <div class="booking-header text-center reveal">
+            <span class="section-subtitle">Reserve Seu Momento</span>
+            <h2 class="section-title">Agende sua experiência</h2>
+            <p class="section-desc">
+                Escolha a técnica ideal, selecione a data e o melhor horário. Seu agendamento será processado instantaneamente.
+            </p>
+        </div>
+
+        <!-- Container do Widget de Agendamento (Mock/Slotty) -->
+        <div class="booking-wrapper reveal">
+            
+            <!-- Nota de Integração (visível apenas para desenvolvedores ou como aviso sutil, mantendo a sofisticação) -->
+            <div class="booking-integration-notice">
+                <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="16" x2="12" y2="12"></line>
+                    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                </svg>
+                <span>Integração Slotty pronta. Insira o widget oficial neste contêiner.</span>
+            </div>
+
+            <!-- MOCK DO WIDGET DE AGENDAMENTO (Design Premium VÖRA) -->
+            <div class="booking-widget" id="booking-widget-container">
+                <div class="widget-steps-indicator">
+                    <span class="step active" data-step="1">1. Técnica</span>
+                    <span class="step-divider"></span>
+                    <span class="step" data-step="2">2. Data & Hora</span>
+                    <span class="step-divider"></span>
+                    <span class="step" data-step="3">3. Seus Dados</span>
+                </div>
+
+                <div class="widget-panes">
+                    
+                    <!-- Painel 1: Escolha da Técnica -->
+                    <div class="widget-pane active" id="pane-1">
+                        <h3 class="pane-title">Selecione o Serviço desejado:</h3>
+                        <div class="technique-options">
+                            <label class="technique-option-card">
+                                <input type="radio" name="booking-technique" value="classico" checked>
+                                <span class="option-custom-radio"></span>
+                                <div class="option-info">
+                                    <span class="option-name">Clássico Fio a Fio</span>
+                                    <span class="option-meta">1h 30min • R$ 150</span>
+                                </div>
+                            </label>
+                            
+                            <label class="technique-option-card">
+                                <input type="radio" name="booking-technique" value="brasileiro">
+                                <span class="option-custom-radio"></span>
+                                <div class="option-info">
+                                    <span class="option-name">Volume Brasileiro</span>
+                                    <span class="option-meta">1h 45min • R$ 180</span>
+                                </div>
+                            </label>
+
+                            <label class="technique-option-card">
+                                <input type="radio" name="booking-technique" value="russo">
+                                <span class="option-custom-radio"></span>
+                                <div class="option-info">
+                                    <span class="option-name">Volume Russo</span>
+                                    <span class="option-meta">2h 15min • R$ 220</span>
+                                </div>
+                            </label>
+
+                            <label class="technique-option-card">
+                                <input type="radio" name="booking-technique" value="lifting">
+                                <span class="option-custom-radio"></span>
+                                <div class="option-info">
+                                    <span class="option-name">Lash Lifting</span>
+                                    <span class="option-meta">1h 00min • R$ 130</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="pane-actions">
+                            <button type="button" class="btn-primary btn-next-pane" data-magnetic>
+                                <span class="btn-text-magnetic">Continuar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Painel 2: Calendário e Horário -->
+                    <div class="widget-pane" id="pane-2">
+                        <div class="datetime-grid">
+                            
+                            <!-- Calendário Minimalista -->
+                            <div class="calendar-container">
+                                <div class="calendar-header">
+                                    <span class="calendar-month">Junho 2026</span>
+                                </div>
+                                <div class="calendar-days-header">
+                                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                                </div>
+                                <div class="calendar-dates-grid">
+                                    <span class="day disabled">31</span>
+                                    <span class="day">1</span><span class="day">2</span><span class="day">3</span><span class="day">4</span><span class="day">5</span><span class="day">6</span>
+                                    <span class="day">7</span><span class="day">8</span><span class="day active">9</span><span class="day">10</span><span class="day">11</span><span class="day">12</span><span class="day">13</span>
+                                    <span class="day">14</span><span class="day">15</span><span class="day">16</span><span class="day">17</span><span class="day">18</span><span class="day">19</span><span class="day">20</span>
+                                    <span class="day">21</span><span class="day">22</span><span class="day">23</span><span class="day">24</span><span class="day">25</span><span class="day">26</span><span class="day">27</span>
+                                    <span class="day">28</span><span class="day">29</span><span class="day">30</span>
+                                    <span class="day disabled">1</span><span class="day disabled">2</span><span class="day disabled">3</span><span class="day disabled">4</span>
+                                </div>
+                            </div>
+
+                            <!-- Horários Disponíveis -->
+                            <div class="timeslots-container">
+                                <h4 class="pane-subtitle">Horários Disponíveis (Terça, 09/06):</h4>
+                                <div class="timeslots-grid">
+                                    <button type="button" class="timeslot">09:00</button>
+                                    <button type="button" class="timeslot active">11:00</button>
+                                    <button type="button" class="timeslot">14:00</button>
+                                    <button type="button" class="timeslot">16:00</button>
+                                    <button type="button" class="timeslot">18:00</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="pane-actions justify-between">
+                            <button type="button" class="btn-back-pane">Voltar</button>
+                            <button type="button" class="btn-primary btn-next-pane" data-magnetic>
+                                <span class="btn-text-magnetic">Continuar</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Painel 3: Seus Dados -->
+                    <div class="widget-pane" id="pane-3">
+                        <form class="booking-data-form" id="booking-form">
+                            <div class="form-group">
+                                <label for="client-name">Nome Completo</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="client-name" required placeholder="Digite seu nome completo">
+                                    <span class="input-status-icon"></span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="client-whatsapp">WhatsApp / Celular</label>
+                                <div class="input-wrapper">
+                                    <input type="tel" id="client-whatsapp" required placeholder="(11) 99999-9999">
+                                    <span class="input-status-icon"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="client-notes">Observações Especiais (Opcional)</label>
+                                <textarea id="client-notes" placeholder="Ex: Alguma alergia, sensibilidade ou pedido de cílios específico..."></textarea>
+                            </div>
+                        </form>
+                        <div class="pane-actions justify-between">
+                            <button type="button" class="btn-back-pane">Voltar</button>
+                            <button type="button" class="btn-primary btn-submit-booking" id="btn-finish-booking" data-magnetic>
+                                <span class="btn-text-magnetic">Finalizar Agendamento</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- MODAL DE SUCESSO / HISTÓRICO DE AGENDAMENTO ANIMADO -->
+            <div class="booking-modal-overlay" id="success-modal">
+                <div class="booking-modal">
+                    <div class="success-icon-wrapper">
+                        <svg class="success-checkmark" viewBox="0 0 52 52">
+                            <circle class="success-checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    <h3 class="modal-title">Agendamento Confirmado!</h3>
+                    <p class="modal-desc">
+                        Seu horário foi reservado com sucesso no estúdio VÖRA. Enviamos os detalhes de confirmação para o seu WhatsApp.
+                    </p>
+                    <div class="modal-summary-card">
+                        <div class="summary-row">
+                            <span class="summary-label">Técnica:</span>
+                            <span class="summary-value" id="summary-technique">Volume Brasileiro</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Data:</span>
+                            <span class="summary-value" id="summary-date">Terça-feira, 09 de Junho</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="summary-label">Horário:</span>
+                            <span class="summary-value" id="summary-time">11:00</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-primary btn-close-modal" id="btn-close-success-modal" data-magnetic>
+                        <span class="btn-text-magnetic">Entendido</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>

@@ -1,0 +1,172 @@
+/* portfolio.css */
+
+.portfolio-section {
+    background-color: var(--color-bg);
+}
+
+.portfolio-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.comparison-slider-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(187, 163, 135, 0.15);
+}
+
+.comparison-slider {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.slider-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.slider-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* O "Depois" fica por cima e é cortado da esquerda até a posição do handle */
+.after-img {
+    clip-path: inset(0 0 0 var(--value));
+    z-index: 2;
+}
+
+.before-img {
+    z-index: 1;
+}
+
+/* Rótulos elegantes */
+.label {
+    position: absolute;
+    top: 20px;
+    padding: 0.6rem 1.2rem;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--color-text);
+    background-color: rgba(245, 239, 235, 0.75);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(187, 163, 135, 0.25);
+    box-shadow: var(--shadow-soft);
+    pointer-events: none;
+}
+
+.label-before {
+    left: 20px;
+    z-index: 3;
+}
+
+.label-after {
+    right: 20px;
+    z-index: 3;
+}
+
+/* O Handle de Arraste */
+.slider-handle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: var(--value);
+    width: 2px;
+    background-color: var(--color-white);
+    transform: translateX(-50%);
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+}
+
+.handle-line {
+    width: 1px;
+    height: calc(50% - 25px);
+    background-color: rgba(245, 239, 235, 0.7);
+}
+
+.handle-button {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-white);
+    border: 1px solid var(--color-primary-light);
+    box-shadow: var(--shadow-medium);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.comparison-slider:hover .handle-button {
+    transform: scale(1.08);
+}
+
+.arrow-left, .arrow-right {
+    transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.comparison-slider:hover .arrow-left {
+    transform: translateX(-2px);
+}
+
+.comparison-slider:hover .arrow-right {
+    transform: translateX(2px);
+}
+
+/* Input Invisível por cima para arrasto nativo super fluido e acessível */
+.slider-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: ew-resize;
+    z-index: 5;
+    margin: 0;
+}
+
+/* Correções responsivas */
+@media (max-width: 768px) {
+    .comparison-slider {
+        aspect-ratio: 4/3;
+    }
+    
+    .label {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.65rem;
+        top: 15px;
+    }
+    
+    .label-before { left: 15px; }
+    .label-after { right: 15px; }
+    
+    .handle-button {
+        width: 42px;
+        height: 42px;
+    }
+    
+    .handle-line {
+        height: calc(50% - 21px);
+    }
+}

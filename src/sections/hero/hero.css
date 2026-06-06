@@ -1,0 +1,305 @@
+/* hero.css */
+
+/* Header Flutuante */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    transition: var(--transition-luxury);
+    padding: 1.5rem 0;
+}
+
+/* Estado do Header ao Rolar a Tela */
+.main-header.scrolled {
+    background-color: rgba(245, 239, 235, 0.85); /* Bege de fundo com transparência */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 5px 30px rgba(31, 31, 31, 0.05);
+    padding: 1rem 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-logo {
+    height: 35px;
+    width: auto;
+    transition: var(--transition-luxury);
+    filter: brightness(0) invert(1); /* Logo branca no topo da Hero escura */
+}
+
+.main-header.scrolled .header-logo {
+    filter: none; /* Logo original (escura) sobre fundo bege claro */
+}
+
+.main-nav {
+    display: none; /* Oculto por padrão para manter o minimalismo no desktop */
+}
+
+.nav-item {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-white);
+    position: relative;
+    padding: 0.5rem 0;
+}
+
+.main-header.scrolled .nav-item {
+    color: var(--color-text);
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: var(--color-primary);
+    transition: var(--transition-luxury);
+}
+
+.nav-item:hover::after {
+    width: 100%;
+}
+
+.header-cta {
+    display: none; /* Oculto no desktop para despoluir a barra de topo */
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+    display: flex; /* Exibido sempre para acesso ao menu minimalista */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 18px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+}
+
+.mobile-menu-toggle span {
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-white);
+    transition: var(--transition-luxury);
+}
+
+.main-header.scrolled .mobile-menu-toggle span {
+    background-color: var(--color-text);
+}
+
+/* Seção Hero */
+.hero-section {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.video-background-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.video-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Gradiente escuro para garantir ótimo contraste */
+    background: radial-gradient(circle, rgba(31, 31, 31, 0.3) 0%, rgba(19, 19, 19, 0.7) 100%);
+}
+
+.hero-content-wrapper {
+    position: relative;
+    z-index: 2;
+    color: var(--color-white);
+    padding-top: 80px; /* Evita sobreposição do header */
+}
+
+.hero-title {
+    font-size: clamp(1.8rem, 4.2vw, 3.6rem); /* Reduzido para ficar mais elegante */
+    font-weight: 300;
+    margin-bottom: 2rem;
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.25);
+    line-height: 1.35;
+}
+
+.hero-title .italic-serif {
+    font-style: italic;
+    font-weight: 300;
+}
+
+.hero-subtitle {
+    font-size: clamp(0.85rem, 1.3vw, 0.98rem); /* Reduzido e mais espaçado */
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 520px; /* Reduzido de 650px */
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.8;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-hero-booking {
+    background-color: transparent !important;
+    border: 1px solid var(--color-white) !important;
+    color: var(--color-white) !important;
+    backdrop-filter: blur(5px);
+    letter-spacing: 2px;
+}
+
+.btn-hero-booking:hover {
+    background-color: var(--color-white) !important;
+    color: var(--color-text) !important;
+    border-color: var(--color-white) !important;
+}
+
+/* Animações por Camada (Staggered Hero entrance) */
+.reveal-hero {
+    opacity: 0;
+    transform: translateY(35px);
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+body.loaded .reveal-hero {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+body.loaded .reveal-hero-delay-1 {
+    transition-delay: 200ms;
+}
+
+body.loaded .reveal-hero-delay-2 {
+    transition-delay: 400ms;
+}
+
+/* Indicador de Scroll */
+.scroll-indicator-container {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+}
+
+.scroll-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: var(--transition-fast);
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+    transform: translateY(2px);
+}
+
+.scroll-line-container {
+    width: 1px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.scroll-line {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+    position: absolute;
+    top: -100%;
+    left: 0;
+    animation: scrollLineAnimation 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+}
+
+@keyframes scrollLineAnimation {
+    0% {
+        top: -100%;
+    }
+    50% {
+        top: 0;
+    }
+    100% {
+        top: 100%;
+    }
+}
+
+/* Responsividade do Header / Hero */
+/* Menu em tela cheia (Global) */
+.main-nav.open {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    z-index: 99;
+    gap: 2.5rem;
+    padding: 2rem;
+    animation: mobileMenuFadeIn 0.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.main-nav.open .nav-item {
+    color: var(--color-text);
+    font-size: 1.8rem;
+    font-family: var(--font-title);
+    letter-spacing: 2px;
+}
+
+/* Responsividade do Header / Hero */
+@media (max-width: 991px) {
+    /* Menu mobile mantém as mesmas configurações globais */
+}
+
+@keyframes mobileMenuFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,48 @@
+/* preloader.css */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-logo {
+    max-width: 180px;
+    width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.preloader-logo.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.preloader-logo.fade-out {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+/* Estado ativo do site pós-carregamento */
+
+body.loaded #main-wrapper {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
+}

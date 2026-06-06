@@ -1,0 +1,129 @@
+/* faq.css */
+
+.faq-section {
+    background-color: var(--color-bg);
+}
+
+.faq-header {
+    margin-bottom: var(--spacing-lg);
+}
+
+.faq-accordion-container {
+    max-width: 750px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+/* Item do Acordeão */
+.faq-item {
+    background-color: #FCFAF9;
+    border: 1px solid rgba(187, 163, 135, 0.15);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.faq-item:hover {
+    border-color: var(--color-primary-light);
+}
+
+/* Botão de Disparo */
+.faq-trigger {
+    width: 100%;
+    background: transparent;
+    border: none;
+    text-align: left;
+    padding: 1.6rem 2.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    outline: none;
+}
+
+/* Ícone */
+.faq-icon-wrapper {
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: var(--radius-full);
+    border: 1px solid rgba(187, 163, 135, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-primary);
+    background-color: var(--color-white);
+    transition: var(--transition-luxury);
+    margin-left: 1.5rem;
+}
+
+.faq-icon {
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    display: block;
+}
+
+/* Conteúdo Expansível */
+.faq-body {
+    height: 0; /* Começa fechado */
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: height;
+}
+
+.faq-content {
+    padding: 0 2.2rem 1.8rem 2.2rem;
+}
+
+.faq-content p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(31, 31, 31, 0.7);
+}
+
+.faq-content strong {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* Estado Aberto (Ativado via JS) */
+.faq-item.open {
+    background-color: var(--color-white);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-soft);
+}
+
+.faq-item.open .faq-icon-wrapper {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+}
+
+.faq-item.open .faq-icon {
+    transform: rotate(180deg);
+}
+
+/* Responsividade */
+@media (max-width: 576px) {
+    .faq-trigger {
+        padding: 1.2rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .faq-content {
+        padding: 0 1.5rem 1.5rem 1.5rem;
+    }
+    
+    .faq-content p {
+        font-size: 0.88rem;
+    }
+}

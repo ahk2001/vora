@@ -1,0 +1,197 @@
+/* design-system / global.css */
+
+:root {
+    /* Cores */
+    --color-bg: #F5EFEB;
+    --color-text: #1F1F1F;
+    --color-primary: #bba387;
+    --color-primary-light: #d8c7b6;
+    --color-white: #FFFFFF;
+    --color-dark-glass: rgba(31, 31, 31, 0.65);
+    
+    /* Fontes */
+    --font-title: 'Elsie', serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    
+    /* Transições de luxo (cubic-bezier sugerida no PRD) */
+    --transition-luxury: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-fast: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    
+    /* Espaçamentos */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 2rem;
+    --spacing-lg: 4rem;
+    --spacing-xl: 8rem;
+    
+    /* Bordas e Sombras */
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+    --shadow-soft: 0 10px 30px rgba(187, 163, 135, 0.08);
+    --shadow-medium: 0 15px 45px rgba(187, 163, 135, 0.15);
+    --shadow-luxury: 0 20px 60px rgba(31, 31, 31, 0.05);
+}
+
+/* Reset e Configurações Globais */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+#main-wrapper {
+    overflow-x: clip;
+    width: 100%;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: 900;
+    line-height: 1.2;
+}
+
+p {
+    font-weight: 300;
+    font-size: 1rem;
+    color: rgba(31, 31, 31, 0.8);
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition-fast);
+}
+
+/* Barra de Rolagem */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary-light);
+    border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary);
+}
+
+/* Container Global */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+/* Efeitos Globais de Botões */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 1.1rem 2.5rem;
+    border-radius: var(--radius-full);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-luxury);
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-white);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+    border-radius: var(--radius-full);
+    transition: var(--transition-luxury);
+    z-index: 0;
+}
+
+.btn-primary span {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-primary:hover {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-2px);
+    color: var(--color-text);
+}
+
+.btn-primary:hover::before {
+    opacity: 0.15;
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Efeitos de Scroll Reveal (Revelação Gradual) */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-fade-in {
+    opacity: 0;
+    transition: opacity 1s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.reveal-fade-in.active {
+    opacity: 1;
+}
+
+.reveal-delay-100 { transition-delay: 100ms; }
+.reveal-delay-200 { transition-delay: 200ms; }
+.reveal-delay-300 { transition-delay: 300ms; }
+.reveal-delay-400 { transition-delay: 400ms; }
+.reveal-delay-500 { transition-delay: 500ms; }
+
+/* Utilitários de Margem e Espaçamento */
+.section-padding {
+    padding: var(--spacing-xl) 0;
+}
+
+.text-center {
+    text-center: center;
+}
+
+/* Ajuste de propriedades com problemas de digitação comuns */
+.text-center {
+    text-align: center;
+}

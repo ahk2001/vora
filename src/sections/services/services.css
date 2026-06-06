@@ -1,0 +1,219 @@
+/* services.css */
+
+.services-section {
+    background-color: var(--color-bg);
+    overflow: hidden;
+    padding: 6rem 0 2rem 0; /* Reduzido o padding da seção para compensar o aumento no viewport */
+}
+
+.services-header {
+    margin-bottom: 2rem; /* Reduzido para dar espaço ao padding do viewport */
+}
+
+.section-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    display: block;
+    margin-bottom: 0.8rem;
+}
+
+.section-title {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    color: var(--color-text);
+    margin-bottom: 1.2rem;
+    font-weight: 400;
+}
+
+.section-desc {
+    max-width: 600px;
+    margin: 0 auto;
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(31, 31, 31, 0.7);
+}
+
+/* Container do Carrossel */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    padding: 0; /* Removido padding para evitar scroll vertical excessivo */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+}
+
+/* Viewport que esconde transbordo */
+.carousel-viewport {
+    width: 100%;
+    overflow: hidden;
+    touch-action: pan-y; /* Permite rolar a página verticalmente, mas desativa o scroll horizontal nativo do navegador */
+    /* Aumentado o padding vertical (especialmente superior) para acomodar a inclinação diagonal dos cards sem cortá-los ou sobrepor o título */
+    padding: 7rem 0 6rem 0; 
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.carousel-viewport:active {
+    cursor: grabbing;
+}
+
+/* Trilho do Carrossel */
+.carousel-track {
+    display: flex;
+    gap: 2.5rem;
+    --carousel-padding: clamp(2rem, 8vw, 10vw);
+    padding-left: var(--carousel-padding);
+    padding-right: var(--carousel-padding);
+    will-change: transform;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Card de Serviço */
+.service-card {
+    /* Exibe exatamente 3 cards na tela baseado na largura do viewport */
+    flex: 0 0 calc((100vw - 2 * var(--carousel-padding) - 5rem) / 3);
+    max-width: 420px; /* Limite elegante para telas ultra-wide */
+    background-color: transparent;
+    border-radius: var(--radius-xl);
+    overflow: visible;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+                opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+                filter 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    will-change: transform, opacity;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Estado inicial de revelação para as imagens/cards do carrossel (blur-in + slide-in) */
+.carousel-container:not(.active) .service-card {
+    opacity: 0;
+    filter: blur(15px);
+    transform: translateY(60px);
+}
+
+/* Transição de entrada escalonada e suave (apenas até que o carrossel seja totalmente revelado) */
+.carousel-container:not(.revealed).active .service-card {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+    transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                filter 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Delays escalonados para os cards originais (do 6º ao 10º card no DOM, após os clones iniciais) */
+.carousel-container:not(.revealed).active .service-card:nth-child(6) { transition-delay: 100ms; }
+.carousel-container:not(.revealed).active .service-card:nth-child(7) { transition-delay: 250ms; }
+.carousel-container:not(.revealed).active .service-card:nth-child(8) { transition-delay: 400ms; }
+.carousel-container:not(.revealed).active .service-card:nth-child(9) { transition-delay: 550ms; }
+.carousel-container:not(.revealed).active .service-card:nth-child(10) { transition-delay: 700ms; }
+
+/* Clones entram sem delay longo para não criar atrasos estranhos se aparecerem nas bordas */
+.carousel-container:not(.revealed).active .service-card.clone-prepended,
+.carousel-container:not(.revealed).active .service-card.clone-appended {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+    transition: opacity 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                filter 1.4s cubic-bezier(0.25, 1, 0.5, 1),
+                transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+    transition-delay: 0ms;
+}
+
+/* Efeito de Foco Coletivo moderno com :has() */
+.carousel-track:has(.service-card:hover) .service-card:not(:hover) {
+    opacity: 0.5;
+    filter: blur(0.5px);
+    transform: scale(0.97);
+}
+
+.service-card:hover {
+    z-index: 2;
+}
+
+/* Imagem com Parallax */
+.service-card-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 380px; /* Proporção vertical elegante */
+    overflow: hidden;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-soft);
+    transition: box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1), transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.service-card:hover .service-card-image-wrapper {
+    box-shadow: var(--shadow-medium);
+    transform: translateY(-12px); /* Elevação suave do card agora feita no wrapper */
+}
+
+.service-card-img {
+    width: 170%; /* Maior para permitir o parallax sem expor as bordas */
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    left: -35%;
+    top: 0;
+    will-change: transform;
+    z-index: 0;
+    pointer-events: none; /* Impede o comportamento de arrasto padrão da imagem no navegador */
+}
+
+/* Gradiente de contraste na base da imagem */
+.service-card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to top, rgba(31, 31, 31, 0.55) 0%, rgba(31, 31, 31, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Título dentro da imagem */
+.service-card-title {
+    position: absolute;
+    bottom: 1.8rem;
+    left: 1.8rem;
+    right: 1.8rem;
+    font-size: 1.35rem;
+    color: var(--color-white);
+    font-family: var(--font-title);
+    font-weight: 400;
+    z-index: 2;
+    transform: translateY(0);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.service-card:hover .service-card-title {
+    transform: translateY(-6px);
+}
+
+/* Responsividade Mobile e Tablet */
+@media (max-width: 991px) {
+    .service-card {
+        /* Exibe exatamente 2 cards no tablet */
+        flex: 0 0 calc((100vw - 2 * var(--carousel-padding) - 2.5rem) / 2);
+    }
+}
+
+@media (max-width: 600px) {
+    .carousel-track {
+        gap: 1.5rem;
+    }
+    .carousel-nav-btn {
+        display: none; /* Em celular usa apenas o deslize de toque */
+    }
+}

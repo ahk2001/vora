@@ -1,0 +1,154 @@
+/* manifesto.css */
+
+.manifesto-section {
+    background-color: #FCFAF9; /* Variação sutil do fundo principal */
+    position: relative;
+    overflow: hidden;
+}
+
+.manifesto-container {
+    display: grid;
+    grid-template-columns: 1fr 1.8fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    position: relative;
+    padding-top: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
+}
+
+/* Bloco de Texto Central */
+.manifesto-text-block {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto;
+    z-index: 5;
+}
+
+.manifesto-title {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    color: var(--color-text);
+    margin-bottom: 2rem;
+    line-height: 1.3;
+    font-weight: 400;
+}
+
+.manifesto-content p {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(31, 31, 31, 0.75);
+    margin-bottom: 1.5rem;
+}
+
+.manifesto-quote {
+    font-family: var(--font-title);
+    font-style: italic;
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    color: var(--color-primary);
+    line-height: 1.6;
+    margin-top: 2.5rem;
+    position: relative;
+    padding: 0 1.5rem;
+    font-weight: 300;
+}
+
+.manifesto-quote::before,
+.manifesto-quote::after {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    position: absolute;
+    color: var(--color-primary-light);
+    opacity: 0.3;
+}
+
+.manifesto-quote::before {
+    content: '“';
+    left: -10px;
+    top: -20px;
+}
+
+.manifesto-quote::after {
+    content: '”';
+    right: -10px;
+    bottom: -40px;
+}
+
+/* Imagens Dispersas/Assimétricas */
+.manifesto-image-wrapper {
+    position: relative;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+    will-change: transform;
+}
+
+.manifesto-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.img-left {
+    width: 260px;
+    height: 380px;
+    justify-self: end;
+    transform: translateY(80px); /* Posição inicial levemente deslocada */
+}
+
+.img-right {
+    width: 280px;
+    height: 420px;
+    justify-self: start;
+    transform: translateY(-80px); /* Posição inicial levemente deslocada */
+}
+
+/* Responsividade do Layout */
+@media (max-width: 991px) {
+    .manifesto-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .manifesto-text-block {
+        grid-column: span 2;
+        order: 1;
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .img-left {
+        justify-self: center;
+        order: 2;
+        transform: none !important; /* Desativa parallax em telas menores */
+        width: 100%;
+        max-width: 280px;
+        height: 340px;
+    }
+    
+    .img-right {
+        justify-self: center;
+        order: 3;
+        transform: none !important;
+        width: 100%;
+        max-width: 280px;
+        height: 340px;
+    }
+}
+
+@media (max-width: 576px) {
+    .manifesto-container {
+        grid-template-columns: 1fr;
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .manifesto-text-block {
+        grid-column: span 1;
+    }
+    
+    .img-left, .img-right {
+        grid-column: span 1;
+        max-width: 100%;
+        height: 280px;
+    }
+}

@@ -1,0 +1,616 @@
+/* booking.css */
+
+.booking-section {
+    background-color: var(--color-bg);
+}
+
+.booking-wrapper {
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* Aviso de Integração */
+.booking-integration-notice {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    background-color: rgba(187, 163, 135, 0.08);
+    border: 1px dashed var(--color-primary-light);
+    border-radius: var(--radius-lg);
+    padding: 0.8rem 1.2rem;
+    color: var(--color-primary);
+    font-size: 0.82rem;
+    margin-bottom: 1.8rem;
+}
+
+.booking-integration-notice svg {
+    flex-shrink: 0;
+}
+
+/* Widget Container */
+.booking-widget {
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid rgba(187, 163, 135, 0.15);
+    overflow: hidden;
+}
+
+/* Indicador de Passos */
+.widget-steps-indicator {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    background-color: #FCFAF9;
+    border-bottom: 1px solid rgba(187, 163, 135, 0.12);
+}
+
+.widget-steps-indicator .step {
+    font-family: var(--font-body);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(31, 31, 31, 0.4);
+    transition: var(--transition-fast);
+}
+
+.widget-steps-indicator .step.active {
+    color: var(--color-primary);
+}
+
+.step-divider {
+    flex-grow: 1;
+    height: 1px;
+    background-color: rgba(187, 163, 135, 0.2);
+    margin: 0 1.5rem;
+}
+
+/* Painéis */
+.widget-panes {
+    position: relative;
+    min-height: 380px;
+}
+
+.widget-pane {
+    padding: 3rem;
+    display: none;
+    animation: paneFadeIn 0.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.widget-pane.active {
+    display: block;
+}
+
+@keyframes paneFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pane-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1.8rem;
+}
+
+.pane-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Opções de Técnicas */
+.technique-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.technique-option-card {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem 1.8rem;
+    border: 1px solid rgba(187, 163, 135, 0.15);
+    border-radius: var(--radius-lg);
+    cursor: pointer;
+    background-color: var(--color-white);
+    transition: var(--transition-fast);
+    position: relative;
+}
+
+.technique-option-card:hover {
+    border-color: var(--color-primary-light);
+    background-color: rgba(245, 239, 235, 0.2);
+}
+
+.technique-option-card input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.option-custom-radio {
+    width: 20px;
+    height: 20px;
+    border-radius: var(--radius-full);
+    border: 1.5px solid var(--color-primary-light);
+    margin-right: 1.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    transition: var(--transition-fast);
+    background-color: var(--color-white);
+}
+
+.option-custom-radio::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-full);
+    background-color: var(--color-white);
+    opacity: 0;
+    transform: scale(0.6);
+    transition: var(--transition-fast);
+}
+
+/* Selecionado */
+.technique-option-card input[type="radio"]:checked + .option-custom-radio {
+    border-color: var(--color-primary);
+    background-color: var(--color-primary);
+}
+
+.technique-option-card input[type="radio"]:checked + .option-custom-radio::after {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.technique-option-card input[type="radio"]:checked ~ .option-info .option-name {
+    color: var(--color-primary);
+}
+
+.option-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.option-name {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: var(--transition-fast);
+}
+
+.option-meta {
+    font-size: 0.85rem;
+    color: rgba(31, 31, 31, 0.5);
+}
+
+/* Grid de Calendário + Hora */
+.datetime-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+/* Calendário */
+.calendar-container {
+    width: 100%;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1.2rem;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--color-text);
+}
+
+.calendar-days-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: rgba(31, 31, 31, 0.4);
+    margin-bottom: 0.8rem;
+}
+
+.calendar-dates-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.4rem;
+}
+
+.calendar-dates-grid .day {
+    aspect-ratio: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--color-text);
+    border-radius: var(--radius-full);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.calendar-dates-grid .day:hover:not(.disabled):not(.active) {
+    background-color: rgba(187, 163, 135, 0.15);
+}
+
+.calendar-dates-grid .day.active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-weight: 600;
+    box-shadow: var(--shadow-soft);
+}
+
+.calendar-dates-grid .day.disabled {
+    color: rgba(31, 31, 31, 0.2);
+    cursor: not-allowed;
+}
+
+/* Horários */
+.timeslots-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.timeslots-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.timeslot {
+    width: 100%;
+    padding: 0.85rem;
+    background-color: #FCFAF9;
+    border: 1px solid rgba(187, 163, 135, 0.15);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.timeslot:hover:not(.active) {
+    border-color: var(--color-primary-light);
+    background-color: var(--color-white);
+}
+
+.timeslot.active {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-soft);
+}
+
+/* Formulário de Dados */
+.booking-data-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(31, 31, 31, 0.65);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.booking-data-form input,
+.booking-data-form textarea {
+    width: 100%;
+    padding: 1.1rem 1.5rem;
+    border: 1px solid rgba(187, 163, 135, 0.2);
+    border-radius: var(--radius-lg);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    background-color: #FCFAF9;
+    transition: var(--transition-fast);
+}
+
+.booking-data-form input:focus,
+.booking-data-form textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    background-color: var(--color-white);
+    box-shadow: 0 4px 15px rgba(187, 163, 135, 0.08);
+}
+
+.booking-data-form textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Feedback Instantâneo de Validação */
+.input-wrapper .input-status-icon {
+    position: absolute;
+    right: 18px;
+    width: 18px;
+    height: 18px;
+    color: #4CAF50;
+    opacity: 0;
+    transform: scale(0.6);
+    transition: var(--transition-fast);
+    pointer-events: none;
+}
+
+/* Classe aplicada via JS ao validar correto */
+.input-wrapper.success .input-status-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.input-wrapper.success input {
+    border-color: #4CAF50;
+    background-color: rgba(76, 175, 80, 0.02);
+}
+
+/* Ações (Botões inferior dos painéis) */
+.pane-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-top: 1px solid rgba(187, 163, 135, 0.12);
+    padding-top: 2rem;
+    margin-top: 1.5rem;
+}
+
+.pane-actions.justify-between {
+    justify-content: space-between;
+}
+
+.btn-back-pane {
+    background: transparent;
+    border: none;
+    color: rgba(31, 31, 31, 0.5);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    padding: 0.8rem 1.5rem;
+}
+
+.btn-back-pane:hover {
+    color: var(--color-text);
+}
+
+.btn-next-pane, .btn-submit-booking {
+    padding: 1rem 2.2rem;
+    font-size: 0.88rem;
+}
+
+/* MODAL DE SUCESSO E HISTÓRICO */
+.booking-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(31, 31, 31, 0.4);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.booking-modal-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.booking-modal {
+    background-color: var(--color-white);
+    border-radius: var(--radius-xl);
+    width: 90%;
+    max-width: 480px;
+    padding: 3rem;
+    text-align: center;
+    box-shadow: 0 30px 90px rgba(31, 31, 31, 0.15);
+    border: 1px solid rgba(187, 163, 135, 0.2);
+    transform: translateY(30px) scale(0.95);
+    transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.booking-modal-overlay.open .booking-modal {
+    transform: translateY(0) scale(1);
+}
+
+.success-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.8rem;
+}
+
+/* Checkmark animada luxuosa */
+.success-checkmark {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #4CAF50;
+    stroke-miterlimit: 10;
+    box-shadow: inset 0px 0px 0px #4CAF50;
+    animation: successFill .4s ease-in-out .4s forwards, successScale .3s ease-in-out .9s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.success-checkmark-circle {
+    stroke-width: 2;
+    stroke-dasharray: 166;
+    stroke-dashoffset: 166;
+    stroke-miterlimit: 10;
+    stroke: #4CAF50;
+    fill: none;
+    animation: successStroke 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.success-checkmark-check {
+    transform-origin: 50% 50%;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    stroke: #4CAF50;
+    animation: successStroke .3s cubic-bezier(0.25, 1, 0.5, 1) .8s forwards;
+}
+
+@keyframes successStroke {
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes successFill {
+    100% {
+        box-shadow: inset 0px 0px 0px 35px rgba(76, 175, 80, 0.08);
+    }
+}
+@keyframes successScale {
+    0%, 100% {
+        transform: none;
+    }
+    50% {
+        transform: scale3d(1.1, 1.1, 1);
+    }
+}
+
+.modal-title {
+    font-size: 1.6rem;
+    color: var(--color-text);
+    margin-bottom: 0.8rem;
+}
+
+.modal-desc {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: rgba(31, 31, 31, 0.6);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.modal-summary-card {
+    background-color: #FCFAF9;
+    border: 1px solid rgba(187, 163, 135, 0.15);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    margin-bottom: 2.2rem;
+    text-align: left;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(187, 163, 135, 0.08);
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.summary-row:first-child {
+    padding-top: 0;
+}
+
+.summary-label {
+    color: rgba(31, 31, 31, 0.5);
+    font-weight: 300;
+}
+
+.summary-value {
+    color: var(--color-text);
+    font-weight: 600;
+}
+
+.btn-close-modal {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+/* Responsividade do Agendamento */
+@media (max-width: 768px) {
+    .widget-pane {
+        padding: 2rem;
+    }
+    
+    .widget-steps-indicator {
+        padding: 1.2rem 1.8rem;
+    }
+    
+    .widget-steps-indicator .step {
+        font-size: 0.72rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .step-divider {
+        margin: 0 0.8rem;
+    }
+    
+    .datetime-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .timeslots-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+    }
+    
+    .timeslot {
+        width: calc(50% - 0.3rem);
+    }
+    
+    .booking-modal {
+        padding: 2rem;
+    }
+}
