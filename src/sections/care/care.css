@@ -37,8 +37,8 @@
 
 .care-left-col .section-title {
     margin: 1.2rem 0;
-    font-size: clamp(2rem, 3vw, 2.8rem);
-    line-height: 1.2;
+    font-size: clamp(2.4rem, 3.6vw, 3.2rem);
+    line-height: 1.15;
     color: var(--color-white); /* Letra clara para alto contraste */
 }
 
@@ -255,44 +255,50 @@
     
     .care-left-col {
         position: sticky;
-        top: 70px; /* Logo abaixo do header mobile flutuante */
+        top: 80px; /* Logo abaixo do header mobile flutuante */
         z-index: 10;
-        background-color: rgba(245, 239, 235, 0.95);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        padding: 1.2rem 1rem;
-        margin: 0 -1.5rem; /* Expande até a borda da tela */
-        border-radius: 0;
+        background-color: transparent;
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        padding: 1.5rem 1rem 0.5rem 1rem;
+        margin: 0;
         border: none;
-        border-bottom: 1px solid rgba(187, 163, 135, 0.15);
-        box-shadow: 0 8px 30px rgba(31, 31, 31, 0.06);
+        box-shadow: none;
         text-align: center;
-        text-shadow: none; /* Remove a sombra no mobile já que temos fundo bege */
     }
+
     
     .care-left-col .section-subtitle {
         font-size: 0.75rem;
         letter-spacing: 2px;
-        color: var(--color-primary); /* Cor bege original para fundo claro */
+        color: var(--color-primary-light); /* Claro igual ao desktop */
     }
 
     .care-left-col .section-title {
-        font-size: 1.4rem;
-        margin: 0.4rem 0 0 0;
-        color: var(--color-text); /* Cor escura original para fundo claro */
+        font-size: 1.95rem; /* Título maior e mais marcante */
+        margin: 0.6rem 0;
+        line-height: 1.2;
+        color: var(--color-white); /* Claro igual ao desktop */
     }
 
     .care-left-col .section-desc {
-        display: none; /* Esconde a descrição no mobile portrait para economizar espaço */
+        display: block; /* Visível no mobile */
+        font-size: 0.85rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85); /* Claro igual ao desktop */
+        margin-bottom: 0.5rem;
     }
 
     .care-aesthetic-badge {
-        display: none;
+        display: inline-flex;
+        margin-top: 0.8rem;
     }
     
     .care-right-col {
+        max-height: none; /* Sem scroll interno */
+        overflow-y: visible; /* Sem scroll interno */
         gap: 1.2rem;
-        padding-top: 1rem;
+        padding: 2rem 0;
     }
     
     .care-card {
