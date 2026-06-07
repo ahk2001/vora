@@ -598,24 +598,74 @@
 /* Responsividade do Agendamento */
 @media (max-width: 768px) {
     .widget-pane {
-        padding: 2rem;
+        padding: 1.5rem;
     }
     
     .widget-steps-indicator {
-        padding: 1rem 0.75rem;
+        padding: 1rem 1.2rem;
         justify-content: space-between;
-        gap: 0.4rem;
+        gap: 0.2rem;
     }
     
     .widget-steps-indicator .step {
-        font-size: 0.64rem;
-        letter-spacing: 0.3px;
-        white-space: nowrap;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(187, 163, 135, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.85rem;
+        color: rgba(31, 31, 31, 0.4);
+        background-color: var(--color-white);
         flex-shrink: 0;
+        letter-spacing: 0;
+        font-weight: 700;
+    }
+
+    .widget-steps-indicator .step .step-text {
+        display: none;
+    }
+    
+    .widget-steps-indicator .step.active {
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        border-color: var(--color-primary);
     }
     
     .step-divider {
-        display: none;
+        display: block;
+        height: 1px;
+        background-color: rgba(187, 163, 135, 0.15);
+        margin: 0 0.4rem;
+        flex-grow: 1;
+    }
+    
+    .technique-option-card {
+        padding: 0.85rem 1.2rem;
+    }
+
+    .technique-option-card .option-name {
+        font-size: 0.95rem;
+    }
+
+    .technique-option-card .option-meta {
+        font-size: 0.8rem;
+    }
+
+    .btn-next-pane, .btn-submit-booking {
+        padding: 0.8rem 1.6rem;
+        font-size: 0.82rem;
+    }
+
+    .btn-back-pane {
+        padding: 0.8rem 1rem;
+        font-size: 0.82rem;
+    }
+
+    .pane-title {
+        font-size: 1.1rem;
+        margin-bottom: 1.2rem;
     }
     
     .datetime-grid {
