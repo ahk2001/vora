@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 15:00:49 */
+/* Compilado automaticamente em 07/06/2026, 15:03:55 */
 // js/global.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -1442,10 +1442,21 @@ async function initBookingWidget() {
             isValid = emailRegex.test(val);
         }
 
+        const errorEl = wrapper.parentElement.querySelector('.error-message');
+
         if (isValid) {
             wrapper.classList.add('success');
+            wrapper.classList.remove('error');
+            if (errorEl) errorEl.style.display = 'none';
         } else {
             wrapper.classList.remove('success');
+            if (val.length > 0) {
+                wrapper.classList.add('error');
+                if (errorEl) errorEl.style.display = 'block';
+            } else {
+                wrapper.classList.remove('error');
+                if (errorEl) errorEl.style.display = 'none';
+            }
         }
         return isValid;
     };

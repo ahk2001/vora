@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 15:00:49 */
+/* Compilado automaticamente em 07/06/2026, 15:03:55 */
 /* design-system / global.css */
 
 :root {
@@ -1897,6 +1897,22 @@ body.loaded .reveal-hero-delay-2 {
 .input-wrapper.success input {
     border-color: #4CAF50;
     background-color: rgba(76, 175, 80, 0.02);
+}
+
+.input-wrapper.error input {
+    border-color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.02);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Ações (Botões inferior dos painéis) */

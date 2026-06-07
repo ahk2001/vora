@@ -672,10 +672,21 @@ async function initBookingWidget() {
             isValid = emailRegex.test(val);
         }
 
+        const errorEl = wrapper.parentElement.querySelector('.error-message');
+
         if (isValid) {
             wrapper.classList.add('success');
+            wrapper.classList.remove('error');
+            if (errorEl) errorEl.style.display = 'none';
         } else {
             wrapper.classList.remove('success');
+            if (val.length > 0) {
+                wrapper.classList.add('error');
+                if (errorEl) errorEl.style.display = 'block';
+            } else {
+                wrapper.classList.remove('error');
+                if (errorEl) errorEl.style.display = 'none';
+            }
         }
         return isValid;
     };

@@ -404,6 +404,22 @@
     background-color: rgba(76, 175, 80, 0.02);
 }
 
+.input-wrapper.error input {
+    border-color: #ff6b6b;
+    background-color: rgba(255, 107, 107, 0.02);
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Ações (Botões inferior dos painéis) */
 .pane-actions {
     display: flex;
