@@ -868,6 +868,29 @@ async function initBookingWidget() {
     const searchInput = document.getElementById('search-identifier');
     const searchLoader = document.getElementById('search-loader');
     const myBookingsList = document.getElementById('my-bookings-list');
+    const searchForm = document.getElementById('booking-search-form');
+    const searchResetContainer = document.getElementById('search-reset-container');
+    const resetSearchBtn = document.getElementById('btn-reset-search');
+    
+    // Função para resetar e mostrar o formulário de busca
+    const showSearchForm = () => {
+        if (searchForm) searchForm.style.display = 'block';
+        if (searchResetContainer) searchResetContainer.style.display = 'none';
+        if (myBookingsList) {
+            myBookingsList.style.display = 'none';
+            myBookingsList.innerHTML = '';
+        }
+        if (searchLoader) searchLoader.style.display = 'none';
+        if (searchInput) {
+            searchInput.value = '';
+            const wrapper = searchInput.closest('.input-wrapper');
+            if (wrapper) wrapper.classList.remove('success');
+            searchInput.focus();
+        }
+        if (submitSearchBtn) {
+            submitSearchBtn.disabled = true;
+        }
+    };
 
     const validateSearchInput = () => {
         if (!searchInput) return false;
@@ -899,20 +922,7 @@ async function initBookingWidget() {
         showMyBookingsBtn.addEventListener('click', () => {
             myBookingsModal.classList.add('open');
             document.body.style.overflow = 'hidden';
-            if (searchInput) {
-                searchInput.value = '';
-                const wrapper = searchInput.closest('.input-wrapper');
-                if (wrapper) wrapper.classList.remove('success');
-                searchInput.focus();
-            }
-            if (submitSearchBtn) {
-                submitSearchBtn.disabled = true;
-            }
-            if (myBookingsList) {
-                myBookingsList.style.display = 'none';
-                myBookingsList.innerHTML = '';
-            }
-            if (searchLoader) searchLoader.style.display = 'none';
+            showSearchForm();
         });
     }
 
@@ -933,6 +943,10 @@ async function initBookingWidget() {
         });
     }
 
+    if (resetSearchBtn) {
+        resetSearchBtn.addEventListener('click', showSearchForm);
+    }
+
     if (submitSearchBtn && searchInput) {
         const handleSearch = async () => {
             const val = searchInput.value.trim();
@@ -947,6 +961,8 @@ async function initBookingWidget() {
                 return;
             }
 
+            // Oculta o formulário de busca e mostra o loader
+            if (searchForm) searchForm.style.display = 'none';
             if (searchLoader) searchLoader.style.display = 'block';
             if (myBookingsList) {
                 myBookingsList.style.display = 'none';
@@ -976,10 +992,12 @@ async function initBookingWidget() {
                 if (error) throw error;
 
                 if (searchLoader) searchLoader.style.display = 'none';
+                if (searchResetContainer) searchResetContainer.style.display = 'block';
+                
                 if (myBookingsList) {
                     myBookingsList.style.display = 'block';
                     if (!appointments || appointments.length === 0) {
-                        myBookingsList.innerHTML = '<div class="no-bookings-message">Nenhum agendamento encontrado para os dados informados.</div>';
+                        myBookingsList.innerHTML = '<div class="no-bookings-message" style="text-align: center; color: rgba(31,31,31,0.5); font-family: var(--font-body); padding: 1rem 0;">Nenhum agendamento encontrado para os dados informados.</div>';
                     } else {
                         appointments.forEach(app => {
                             const dateObj = new Date(app.start_time);
@@ -1034,6 +1052,7 @@ async function initBookingWidget() {
             } catch (err) {
                 console.error("Erro ao carregar agendamentos:", err);
                 if (searchLoader) searchLoader.style.display = 'none';
+                if (searchResetContainer) searchResetContainer.style.display = 'block';
                 if (myBookingsList) {
                     myBookingsList.style.display = 'block';
                     myBookingsList.innerHTML = '<div style="text-align:center; padding:20px; color:#ff6b6b;">Não foi possível buscar os agendamentos. Tente novamente mais tarde.</div>';
