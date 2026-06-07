@@ -25,6 +25,56 @@ function initPortfolioSlider() {
             animate();
         }
     });
+
+    // Função para tratar a posição do arraste e toque
+    function handleMove(clientX) {
+        const rect = sliderContainer.getBoundingClientRect();
+        const positionX = clientX - rect.left;
+        let percent = (positionX / rect.width) * 100;
+        
+        if (percent < 0) percent = 0;
+        if (percent > 100) percent = 100;
+        
+        targetValue = percent;
+        input.value = percent; // Atualiza o input invisível por acessibilidade
+        
+        if (!animationID) {
+            animate();
+        }
+    }
+
+    // Eventos de toque diretos para iOS / Android
+    sliderContainer.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches[0]) {
+            handleMove(e.touches[0].clientX);
+        }
+    }, { passive: true });
+
+    sliderContainer.addEventListener('touchmove', (e) => {
+        if (e.touches && e.touches[0]) {
+            handleMove(e.touches[0].clientX);
+            if (e.cancelable) {
+                e.preventDefault();
+            }
+        }
+    }, { passive: false });
+
+    // Eventos de mouse diretos para melhor responsividade no desktop (opcional, mas complementa o input)
+    let isDragging = false;
+    
+    sliderContainer.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        handleMove(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        handleMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
     
     function animate() {
         // Diferença entre o valor atual e o alvo
