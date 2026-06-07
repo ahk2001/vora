@@ -662,10 +662,11 @@ async function initBookingWidget() {
         let isValid = false;
 
         if (input.id === 'client-name') {
-            isValid = val.length >= 3;
+            const nameParts = val.split(/\s+/).filter(part => part.length >= 2);
+            isValid = nameParts.length >= 2;
         } else if (input.id === 'client-whatsapp') {
             const digits = val.replace(/\D/g, '');
-            isValid = digits.length >= 10;
+            isValid = digits.length === 10 || digits.length === 11;
         } else if (input.id === 'client-email') {
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             isValid = emailRegex.test(val);
@@ -719,7 +720,10 @@ async function initBookingWidget() {
 
         setTimeout(() => {
             if (window.turnstile && document.getElementById('cf-turnstile-container')) {
-                const isLocal = !window.location.hostname || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                const isLocal = !window.location.hostname || 
+                                window.location.hostname === 'localhost' || 
+                                window.location.hostname === '127.0.0.1' ||
+                                window.location.hostname.endsWith('.vercel.app');
                 const sitekey = isLocal ? '1x00000000000000000000AA' : '0x4AAAAAADQxpMsRW9zFdvyn';
 
                 window.turnstile.render('#cf-turnstile-container', {
