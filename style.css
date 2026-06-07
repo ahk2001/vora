@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 12:40:24 */
+/* Compilado automaticamente em 07/06/2026, 13:21:03 */
 /* design-system / global.css */
 
 :root {
@@ -544,6 +544,46 @@ body.loaded .reveal-hero-delay-2 {
 @media (max-width: 991px) {
     /* Menu mobile mantém as mesmas configurações globais */
 }
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 1rem 0;
+    }
+    
+    .hero-content-wrapper {
+        padding-top: 90px;
+    }
+    
+    .hero-title {
+        font-size: clamp(1.6rem, 8vw, 2.2rem);
+        margin-bottom: 1.25rem;
+    }
+    
+    .hero-title br {
+        display: none;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.85rem, 3.5vw, 0.9rem);
+        margin-bottom: 2rem;
+        max-width: 90%;
+        line-height: 1.6;
+    }
+    
+    .btn-hero-booking {
+        padding: 0.9rem 2rem !important;
+        font-size: 0.85rem !important;
+    }
+    
+    .scroll-indicator-container {
+        bottom: 20px;
+    }
+    
+    .scroll-line-container {
+        height: 30px;
+    }
+}
+
 
 @keyframes mobileMenuFadeIn {
     from {
