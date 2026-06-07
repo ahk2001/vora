@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 13:23:51 */
+/* Compilado automaticamente em 07/06/2026, 13:26:55 */
 /* design-system / global.css */
 
 :root {
@@ -816,6 +816,10 @@ body.loaded .reveal-hero-delay-2 {
     }
     .carousel-nav-btn {
         display: none; /* Em celular usa apenas o deslize de toque */
+    }
+    .service-card-image-wrapper {
+        height: auto;
+        aspect-ratio: 2 / 3;
     }
 }
 

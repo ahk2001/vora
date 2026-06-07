@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 13:23:51 */
+/* Compilado automaticamente em 07/06/2026, 13:26:55 */
 // js/global.js
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -251,6 +251,9 @@ function initServicesCarousel() {
     
     let isDragging = false;
     let startX = 0;
+    let startY = 0;
+    let isScrolling = false;
+    let isDragStarted = false;
     
     // Posições e física do carrossel (controle via LERP)
     let currentTranslate = 0;
@@ -320,8 +323,15 @@ function initServicesCarousel() {
     });
 
     function dragStart(e) {
+        // Permite arrastar apenas se o clique/toque for em cima de um card
+        const card = e.target.closest('.service-card');
+        if (!card) return;
+
         isDragging = true;
+        isScrolling = false;
+        isDragStarted = false;
         startX = getPositionX(e);
+        startY = getPositionY(e);
         lastX = startX;
         velocity = 0;
     }
@@ -329,11 +339,37 @@ function initServicesCarousel() {
     function dragMove(e) {
         if (!isDragging) return;
         
+        const currentX = getPositionX(e);
+        const currentY = getPositionY(e);
+        
+        const diffX = currentX - startX;
+        const diffY = currentY - startY;
+        
+        // Determina se é um scroll vertical ou arraste lateral nos primeiros pixels de movimento
+        if (!isDragStarted && !isScrolling) {
+            const absX = Math.abs(diffX);
+            const absY = Math.abs(diffY);
+            
+            if (absY > absX && absY > 5) {
+                isScrolling = true;
+                isDragging = false;
+                return;
+            } else if (absX > absY && absX > 5) {
+                isDragStarted = true;
+            } else {
+                return;
+            }
+        }
+        
+        if (isScrolling) {
+            isDragging = false;
+            return;
+        }
+        
         if (e.cancelable) {
             e.preventDefault();
         }
         
-        const currentX = getPositionX(e);
         const diff = currentX - startX;
         let target = prevTranslate + diff;
         
@@ -377,6 +413,10 @@ function initServicesCarousel() {
 
     function getPositionX(e) {
         return e.type.includes('mouse') ? e.clientX : e.touches[0].clientX;
+    }
+
+    function getPositionY(e) {
+        return e.type.includes('mouse') ? e.clientY : e.touches[0].clientY;
     }
     
     function updateTrackPosition() {

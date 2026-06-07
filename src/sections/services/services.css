@@ -216,4 +216,8 @@
     .carousel-nav-btn {
         display: none; /* Em celular usa apenas o deslize de toque */
     }
+    .service-card-image-wrapper {
+        height: auto;
+        aspect-ratio: 2 / 3;
+    }
 }
