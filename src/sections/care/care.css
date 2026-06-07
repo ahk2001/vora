@@ -15,6 +15,7 @@
 @media (max-width: 1024px) {
     .care-section {
         background-attachment: scroll;
+        background-size: auto;
     }
 }
 
