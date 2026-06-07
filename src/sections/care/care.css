@@ -11,6 +11,13 @@
     /* overflow: hidden; REMOVIDO para permitir que o position: sticky funcione na coluna esquerda */
 }
 
+/* Desativa efeito fixed em dispositivos móveis/touch para corrigir bug de renderização no iOS */
+@media (max-width: 1024px) {
+    .care-section {
+        background-attachment: scroll;
+    }
+}
+
 /* Layout de Duas Colunas */
 .care-layout-wrapper {
     display: grid;

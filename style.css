@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 14:23:31 */
+/* Compilado automaticamente em 07/06/2026, 14:32:21 */
 /* design-system / global.css */
 
 :root {
@@ -1172,6 +1172,13 @@ body.loaded .reveal-hero-delay-2 {
     border-top: 1px solid rgba(187, 163, 135, 0.1);
     position: relative;
     /* overflow: hidden; REMOVIDO para permitir que o position: sticky funcione na coluna esquerda */
+}
+
+/* Desativa efeito fixed em dispositivos móveis/touch para corrigir bug de renderização no iOS */
+@media (max-width: 1024px) {
+    .care-section {
+        background-attachment: scroll;
+    }
 }
 
 /* Layout de Duas Colunas */
