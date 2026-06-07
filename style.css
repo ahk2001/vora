@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 13:21:03 */
+/* Compilado automaticamente em 07/06/2026, 13:23:51 */
 /* design-system / global.css */
 
 :root {
@@ -565,14 +565,15 @@ body.loaded .reveal-hero-delay-2 {
     
     .hero-subtitle {
         font-size: clamp(0.85rem, 3.5vw, 0.9rem);
-        margin-bottom: 2rem;
+        margin-bottom: 2.75rem;
         max-width: 90%;
         line-height: 1.6;
     }
     
     .btn-hero-booking {
-        padding: 0.9rem 2rem !important;
-        font-size: 0.85rem !important;
+        padding: 0.8rem 1.8rem !important;
+        font-size: 0.75rem !important;
+        letter-spacing: 1.5px !important;
     }
     
     .scroll-indicator-container {
