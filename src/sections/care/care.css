@@ -1,22 +1,28 @@
 /* care.css */
 
 .care-section {
-    background-image: url('bg-sessao-cuidados.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: repeat;
-    background-attachment: fixed;
     border-top: 1px solid rgba(187, 163, 135, 0.1);
     position: relative;
+    /* clip-path: inset(0) serve para recortar o pseudo-element fixo nos limites da seção */
+    clip-path: inset(0);
     /* overflow: hidden; REMOVIDO para permitir que o position: sticky funcione na coluna esquerda */
 }
 
-/* Desativa efeito fixed em dispositivos móveis/touch para corrigir bug de renderização no iOS */
-@media (max-width: 1024px) {
-    .care-section {
-        background-attachment: scroll;
-        background-size: auto;
-    }
+/* Pseudo-elemento para fundo fixo que funciona perfeitamente em todas as plataformas (inclusive iOS) */
+.care-section::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('bg-sessao-cuidados.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+    will-change: transform;
 }
 
 /* Layout de Duas Colunas */

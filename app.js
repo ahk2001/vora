@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 14:34:50 */
+/* Compilado automaticamente em 07/06/2026, 14:37:31 */
 // js/global.js
 
 document.addEventListener('DOMContentLoaded', () => {
