@@ -83,8 +83,13 @@ function compile() {
         }
     });
     
-    // Salvar arquivos na raiz (Distribuição)
-    fs.writeFileSync(path.join(DIST_DIR, 'index.html'), htmlContent, 'utf8');
+    // Salvar arquivos na raiz (Distribuição) com cache-busting dinâmico para ambiente local/desenvolvimento
+    const timestamp = Date.now();
+    const finalHtml = htmlContent
+        .replace('href="style.css"', `href="style.css?v=${timestamp}"`)
+        .replace('src="app.js"', `src="app.js?v=${timestamp}"`);
+
+    fs.writeFileSync(path.join(DIST_DIR, 'index.html'), finalHtml, 'utf8');
     fs.writeFileSync(path.join(DIST_DIR, 'style.css'), cssContent, 'utf8');
     fs.writeFileSync(path.join(DIST_DIR, 'app.js'), jsContent, 'utf8');
     

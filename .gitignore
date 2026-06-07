@@ -1,0 +1,27 @@
+# Dependências
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Scripts de build e utilitários locais temporários
+convert.js
+convert_wrapper.js
+
+# logs
+*.log
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores de código
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
