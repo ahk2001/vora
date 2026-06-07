@@ -1,4 +1,4 @@
-/* Compilado automaticamente em 07/06/2026, 13:26:55 */
+/* Compilado automaticamente em 07/06/2026, 14:15:38 */
 /* design-system / global.css */
 
 :root {
@@ -812,7 +812,11 @@ body.loaded .reveal-hero-delay-2 {
 
 @media (max-width: 600px) {
     .carousel-track {
-        gap: 1.5rem;
+        gap: 1.2rem;
+        --carousel-padding: 1.2rem;
+    }
+    .service-card {
+        flex: 0 0 calc((100vw - 2 * var(--carousel-padding) - 1.2rem) / 2);
     }
     .carousel-nav-btn {
         display: none; /* Em celular usa apenas o deslize de toque */

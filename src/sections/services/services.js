@@ -56,8 +56,8 @@ function initServicesCarousel() {
     let gap = 0;
     let paddingLeft = 0;
     
-    // Configurações do Carrossel
-    const parallaxStrength = 110; // amplitude do movimento parallax em px
+    // Configurações do Carrossel (calculadas dinamicamente)
+    let parallaxStrength = 110; // amplitude do movimento parallax em px
     
     const updateLayoutCache = () => {
         const card = track.querySelector('.service-card');
@@ -66,6 +66,15 @@ function initServicesCarousel() {
         const style = window.getComputedStyle(track);
         gap = parseFloat(style.gap) || 0;
         paddingLeft = parseFloat(style.paddingLeft) || 0;
+        
+        // Ajusta a força do parallax com base na largura do card para evitar que a imagem saia das bordas
+        if (window.innerWidth <= 600) {
+            parallaxStrength = cardWidth * 0.32; // Limita a força do parallax no mobile
+        } else if (window.innerWidth <= 991) {
+            parallaxStrength = cardWidth * 0.35; // Limita no tablet
+        } else {
+            parallaxStrength = 110;
+        }
     };
     
     updateLayoutCache();
