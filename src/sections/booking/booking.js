@@ -733,8 +733,7 @@ async function initBookingWidget() {
             if (window.turnstile && document.getElementById('cf-turnstile-container')) {
                 const isLocal = !window.location.hostname || 
                                 window.location.hostname === 'localhost' || 
-                                window.location.hostname === '127.0.0.1' ||
-                                window.location.hostname.endsWith('.vercel.app');
+                                window.location.hostname === '127.0.0.1';
                 const sitekey = isLocal ? '1x00000000000000000000AA' : '0x4AAAAAADQxpMsRW9zFdvyn';
 
                 window.turnstile.render('#cf-turnstile-container', {
